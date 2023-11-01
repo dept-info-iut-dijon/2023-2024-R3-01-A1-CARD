@@ -1,7 +1,9 @@
 <?php
+namespace controllers;
+
 require_once("../views/View.php");
 
-namespace controllers;
+use views\View;
 
 /**
  * Classe MainController
@@ -9,5 +11,13 @@ namespace controllers;
  */
 class MainController
 {
-
+    /**
+     * Affiche la page d'accueil
+     * @return void
+     */
+    public function Index(): void
+    {
+        $indexView = new View('Index');
+        $indexView->generer(['nomDresseur' => "Red"]);
+    }
 }
