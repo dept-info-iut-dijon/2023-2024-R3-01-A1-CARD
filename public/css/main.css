@@ -1,0 +1,56 @@
+/* ---------{ Définition des variables CSS }--------- */
+:root {
+    --primary-color: #26406b;
+    --secondary-color: #1f77c4;
+    --bg-color: #f8fffd;
+    --txt-color: #132034;
+    --info-color: #949494;
+    --transition: all 0.2s ease-in-out;
+    --shadow: 0 0 10px rgba(50, 50, 75, 0.1);
+}
+
+/* ---------{ Réinitialisation des styles }--------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------{ Définition des styles généraux }--------- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--txt-color);
+}
+
+/* ---------{ Barre de navigation }--------- */
+header {
+    margin: 0;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-color);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    box-shadow: var(--shadow);
+}
+header nav ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+header nav ul li {
+    padding: 20px 30px;
+}
+header nav ul li a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: var(--transition);
+}
+header nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
