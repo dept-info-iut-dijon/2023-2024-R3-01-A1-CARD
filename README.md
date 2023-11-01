@@ -6,5 +6,7 @@ TP5-10 R3.01 Développement web Pokédex
 ## Lien vers le GRP du pokédex
 🔗 http://grp-422.iq.iut21.u-bourgogne.fr/vscode/pokedex/
 
-## Dernière avancée
-👉 TP05
+## Dernières avancées
+✅ TP05 terminé avec le bonus
+
+👉 TP06
