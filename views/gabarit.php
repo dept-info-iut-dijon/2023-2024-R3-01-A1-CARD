@@ -17,7 +17,7 @@
 </header>
 <!-- #contenu -->
 <main id="contenu">
-
+    <?= $contenu ?>
 </main>
 <footer>
 

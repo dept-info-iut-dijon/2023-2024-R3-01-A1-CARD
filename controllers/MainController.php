@@ -1,7 +1,7 @@
 <?php
 namespace controllers;
 
-require_once("../views/View.php");
+require_once("views/View.php");
 
 use views\View;
 
