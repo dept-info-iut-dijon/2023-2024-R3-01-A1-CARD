@@ -3,6 +3,7 @@
 namespace models;
 
 use PDO;
+use PDOStatement;
 
 /**
  * Classe abstraite Model
@@ -10,7 +11,7 @@ use PDO;
  */
 abstract class Model
 {
-    private ?PDO $db;
+    private ?PDO $db = null;
 
     /**
      * @param string $sql Requête SQL à exécuter
@@ -39,7 +40,8 @@ abstract class Model
     private function getDB(): PDO
     {
         if ($this->db === null) {
-            $this->db = new PDO('mysql:host=localhost;dbname=pokemon;charset=utf8', 'grp-422', 'RqUjhLfu');
+            //$this->db = new PDO('mysql:host=phpmyadmin.iq.iut21.u-bourgogne.fr;dbname=grp-422_s3_progweb;charset=utf8', 'grp-422', 'RqUjhLfu'); // connexion IUT
+            $this->db = new PDO('mysql:host=localhost;dbname=grp-422_s3_progweb;charset=utf8', 'root', ''); // connexion locale
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
 

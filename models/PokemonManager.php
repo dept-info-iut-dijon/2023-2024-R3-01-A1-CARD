@@ -3,6 +3,7 @@
 namespace models;
 
 require_once("models/Model.php");
+require_once("models/Pokemon.php");
 
 use models\Model;
 
@@ -32,12 +33,15 @@ class PokemonManager extends Model
      */
     public function getById(int $idPokemon): ?Pokemon
     {
-        $sql = "SELECT * FROM pokemon WHERE id = ?";
+        $sql = "SELECT * FROM pokemon WHERE idPokemon = ?";
         $params = [$idPokemon];
         $stmt = $this->execRequest($sql, $params);
         $stmt->fetch();
 
-        $pokemon = new Pokemon();
+        if($stmt->rowCount() === 1) {
+            $pokemon = new Pokemon();
+        }
+        else $pokemon = null;
 
         return $pokemon;
     }
