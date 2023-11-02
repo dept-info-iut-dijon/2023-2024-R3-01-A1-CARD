@@ -1,3 +1,7 @@
+<?php if (!empty($message)): ?>
+    <div class="notif notif-success"><?= $message ?></div>
+<?php endif ?>
+
 <h1>Pokémons</h1>
 
 <section class="pokemons">
