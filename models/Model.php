@@ -2,8 +2,12 @@
 
 namespace models;
 
+require_once("models/Config.php");
+
 use PDO;
 use PDOStatement;
+use PDOException;
+
 
 /**
  * Classe abstraite Model
@@ -40,9 +44,15 @@ abstract class Model
     private function getDB(): PDO
     {
         if ($this->db === null) {
-            //$this->db = new PDO('mysql:host=phpmyadmin.iq.iut21.u-bourgogne.fr;dbname=grp-422_s3_progweb;charset=utf8', 'grp-422', 'RqUjhLfu'); // connexion IUT
-            $this->db = new PDO('mysql:host=localhost;dbname=grp-422_s3_progweb;charset=utf8', 'root', ''); // connexion locale
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            try {
+                // récupération des paramètres de configuration BD
+                $config = Config::getInstance();
+                $this->db = new PDO($config->getDsn(), $config->getUser(), $config->getPass()); // connexion locale
+                $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            }
+            catch (PDOException $e) {
+                die('Erreur : ' . $e->getMessage());
+            }
         }
 
         return $this->db;
