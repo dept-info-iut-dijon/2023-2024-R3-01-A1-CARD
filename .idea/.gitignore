@@ -8,3 +8,5 @@
 /dataSources.local.xml
 # IDE files
 /.idea
+# Configuration file
+/models/dev.ini
