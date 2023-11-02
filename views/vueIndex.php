@@ -13,8 +13,8 @@
                 <p><?= $pokemon->getDescription() ?></p>
             </div>
             <div class="actions">
-                <a href="#" class="btn btn-primary">Modifier</a>
-                <a href="#" class="btn btn-danger">Supprimer</a>
+                <a href="index.php?action=edit-pokemon&idPokemon=<?= $pokemon->getIdPokemon() ?>" class="btn btn-primary">Modifier</a>
+                <a href="index.php?action=del-pokemon&idPokemon=<?= $pokemon->getIdPokemon() ?>" class="btn btn-danger">Supprimer</a>
             </div>
         </article>
     <?php endforeach ?>
