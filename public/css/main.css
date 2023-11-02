@@ -73,6 +73,19 @@ header {
     width: 100%;
     box-shadow: var(--shadow);
 }
+header .logo {
+    padding: 5px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+header .logo img {
+    height: 100%;
+}
 header nav ul {
     display: flex;
     justify-content: space-between;

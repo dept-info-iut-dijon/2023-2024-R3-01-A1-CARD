@@ -11,14 +11,16 @@
 <body>
 <header>
     <div class="logo">
-        Logo
+        <img src="public/img/logo.png" alt="Pokédex">
+        Pokédex
     </div>
     <!-- Menu -->
     <nav>
         <ul>
             <li><a href="index.php">Accueil</a></li>
-            <li><a href="#">Lien 2</a></li>
-            <li><a href="#">Lien 3</a></li>
+            <li><a href="index.php?action=add-pokemon">Ajouter</a></li>
+            <li><a href="index.php?action=add-pokemon-type">Types</a></li>
+            <li><a href="index.php?action=search">Rechercher</a></li>
         </ul>
     </nav>
 </header>

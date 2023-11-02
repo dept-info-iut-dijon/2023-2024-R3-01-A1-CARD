@@ -1,4 +1,4 @@
-<h1>Pokédex de <?= $nomDresseur ?></h1>
+<h1>Pokémons</h1>
 
 <section class="pokemons">
     <?php foreach ($pokemons as $pokemon): ?>

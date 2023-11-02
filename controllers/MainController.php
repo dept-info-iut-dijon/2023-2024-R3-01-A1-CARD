@@ -27,6 +27,6 @@ class MainController
 
         // affichage de la vue
         $indexView = new View('Index');
-        $indexView->generer(["nomDresseur" => "Red", "pokemons" => $pokemons]);
+        $indexView->generer(["pokemons" => $pokemons]);
     }
 }
