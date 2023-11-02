@@ -29,4 +29,14 @@ class MainController
         $indexView = new View('Index');
         $indexView->generer(["pokemons" => $pokemons]);
     }
+
+    /**
+     * Affiche la page de recherche de pokémon
+     * @return void
+     */
+    public function Search(): void
+    {
+        $searchView = new View('Search');
+        $searchView->generer([]);
+    }
 }

@@ -3,37 +3,37 @@
 namespace controllers\Router\Route;
 
 require_once('controllers/Router/Route.php');
-require_once('controllers/PokemonController.php');
+require_once('controllers/MainController.php');
 
 use controllers\Router\Route;
-use controllers\PokemonController;
+use controllers\MainController;
 
 /**
- * Classe RouteAddPokemon
- * Route pour la page d'ajout de pokémon
+ * Classe RouteSearch
+ * Route pour la page de recherche de pokémon
  */
-class RouteAddPokemon extends Route
+class RouteSearch extends Route
 {
-    private PokemonController $controller;
+    private MainController $controller;
 
     /**
      * Prépare l'affichage de la page
-     * @param PokemonController $controller
+     * @param MainController $controller
      */
-    public function __construct(PokemonController $controller)
+    public function __construct(MainController $controller)
     {
         parent::__construct();
         $this->controller = $controller;
     }
 
     /**
-     * Affiche la page d'ajout de pokémon
+     * Affiche la page de recherche de pokémon
      * @param array $params Paramètres à passer à la page
      * @return void
      */
     protected function get(array $params = []): void
     {
-        $this->controller->displayAddPokemon();
+        $this->controller->Search();
     }
 
     /**

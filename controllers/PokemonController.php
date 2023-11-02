@@ -23,4 +23,14 @@ class PokemonController
         $addPokemonView = new View('AddPokemon');
         $addPokemonView->generer([]);
     }
+
+    /**
+     * Affiche la page d'ajout de type de pokémon
+     * @return void
+     */
+    public function displayAddType(): void
+    {
+        $addTypeView = new View('AddType');
+        $addTypeView->generer([]);
+    }
 }

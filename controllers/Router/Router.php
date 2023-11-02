@@ -5,12 +5,16 @@ namespace controllers\Router;
 require_once('controllers/MainController.php');
 require_once('controllers/PokemonController.php');
 require_once('controllers/Router/Route/RouteAddPokemon.php');
+require_once('controllers/Router/Route/RouteAddType.php');
 require_once('controllers/Router/Route/RouteIndex.php');
+require_once('controllers/Router/Route/RouteSearch.php');
 
 use controllers\MainController;
 use controllers\PokemonController;
 use controllers\Router\Route\RouteAddPokemon;
+use controllers\Router\Route\RouteAddType;
 use controllers\Router\Route\RouteIndex;
+use controllers\Router\Route\RouteSearch;
 
 /**
  * Classe Router
@@ -35,12 +39,20 @@ class Router
 
     private function CreateControllerList(): void
     {
-        $this->ctrlList = ["main" => new MainController(), "pokemon" => new PokemonController()];
+        $this->ctrlList = [
+            "main" => new MainController(),
+            "pokemon" => new PokemonController()
+        ];
     }
 
     private function CreateRouteList(): void
     {
-        $this->routeList = ["index" => new RouteIndex($this->ctrlList["main"]), "add-pokemon" => new RouteAddPokemon($this->ctrlList["pokemon"])];
+        $this->routeList = [
+            "index" => new RouteIndex($this->ctrlList["main"]),
+            "add-pokemon" => new RouteAddPokemon($this->ctrlList["pokemon"]),
+            "add-pokemon-type" => new RouteAddType($this->ctrlList["pokemon"]),
+            "search" => new RouteSearch($this->ctrlList["main"])
+        ];
     }
 
     /**

@@ -9,10 +9,10 @@ use controllers\Router\Route;
 use controllers\PokemonController;
 
 /**
- * Classe RouteAddPokemon
- * Route pour la page d'ajout de pokémon
+ * Classe RouteAddType
+ * Route pour la page d'ajout de type de pokémon
  */
-class RouteAddPokemon extends Route
+class RouteAddType extends Route
 {
     private PokemonController $controller;
 
@@ -27,13 +27,13 @@ class RouteAddPokemon extends Route
     }
 
     /**
-     * Affiche la page d'ajout de pokémon
+     * Affiche la page d'ajout de type de pokémon
      * @param array $params Paramètres à passer à la page
      * @return void
      */
     protected function get(array $params = []): void
     {
-        $this->controller->displayAddPokemon();
+        $this->controller->displayAddType();
     }
 
     /**
