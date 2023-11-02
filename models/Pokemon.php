@@ -8,21 +8,21 @@ namespace models;
  */
 class Pokemon
 {
-    private ?int $id;
+    private ?int $idPokemon;
     private string $nomEspece;
     private ?string $description;
     private string $typeOne;
     private ?string $typeTwo;
     private ?string $urlImg;
 
-    public function getId(): ?int
+    public function getIdPokemon(): ?int
     {
-        return $this->id;
+        return $this->idPokemon;
     }
 
-    public function setId(?int $id): void
+    public function setIdPokemon(?int $id): void
     {
-        $this->id = $id;
+        $this->idPokemon = $id;
     }
 
     public function getNomEspece(): string
@@ -73,5 +73,15 @@ class Pokemon
     public function setUrlImg(?string $urlImg): void
     {
         $this->urlImg = $urlImg;
+    }
+
+    public function hydrate(array $donnees): void
+    {
+        foreach ($donnees as $key => $value) {
+            $method = "set" . ucfirst($key);
+            if(method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
     }
 }

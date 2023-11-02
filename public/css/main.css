@@ -2,9 +2,11 @@
 :root {
     --primary-color: #26406b;
     --secondary-color: #1f77c4;
+    --success-color: #2ca02c;
+    --danger-color: #d62728;
     --bg-color: #f8fffd;
     --txt-color: #132034;
-    --info-color: #949494;
+    --info-color: #dadada;
     --transition: all 0.2s ease-in-out;
     --shadow: 0 0 10px rgba(50, 50, 75, 0.1);
 }
@@ -21,6 +23,41 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--bg-color);
     color: var(--txt-color);
+}
+
+.tag {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    transition: var(--transition);
+}
+.tag-info {
+    background-color: var(--info-color);
+    color: var(--txt-color);
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--primary-color);
+    text-decoration: none;
+    color: var(--bg-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.btn-primary {
+    background-color: var(--primary-color);
+}
+.btn-success {
+    background-color: var(--success-color);
+}
+.btn-danger {
+    background-color: var(--danger-color);
+}
+.btn:hover {
+    filter: brightness(.8);
 }
 
 /* ---------{ Barre de navigation }--------- */
@@ -54,3 +91,47 @@ header nav ul li a:hover {
     color: var(--secondary-color);
 }
 
+/* ---------{ Liste des pokémons }--------- */
+section.pokemons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+    padding: 30px 60px;
+    justify-content: center;
+    align-items: center;
+}
+section.pokemons .pokemon {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    max-width: 450px;
+}
+section.pokemons .pokemon img {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+section.pokemons .pokemon .infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+section.pokemons .pokemon .infos h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+section.pokemons .pokemon .actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}

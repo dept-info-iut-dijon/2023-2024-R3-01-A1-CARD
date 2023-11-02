@@ -24,11 +24,9 @@ class MainController
 
         // récupération d'une liste de pokémons, un pokémon, et un pokémon inexistant
         $pokemons = $manager->getAll();
-        $pokemon = $manager->getById(1);
-        $unknownPokemon = $manager->getById(999);
 
         // affichage de la vue
         $indexView = new View('Index');
-        $indexView->generer(["nomDresseur" => "Red", "pokemons" => $pokemons, "pokemon" => $pokemon, "unknownPokemon" => $unknownPokemon]);
+        $indexView->generer(["nomDresseur" => "Red", "pokemons" => $pokemons]);
     }
 }

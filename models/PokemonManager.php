@@ -21,7 +21,14 @@ class PokemonManager extends Model
     {
         $sql = "SELECT * FROM pokemon";
         $stmt = $this->execRequest($sql);
-        $pokemons = $stmt->fetchAll();
+        $res = $stmt->fetchAll();
+
+        $pokemons = [];
+        foreach ($res as $pokemon) {
+            $p = new Pokemon();
+            $p->hydrate($pokemon);
+            $pokemons[] = $p;
+        }
 
         return $pokemons;
     }
@@ -36,10 +43,11 @@ class PokemonManager extends Model
         $sql = "SELECT * FROM pokemon WHERE idPokemon = ?";
         $params = [$idPokemon];
         $stmt = $this->execRequest($sql, $params);
-        $stmt->fetch();
+        $res = $stmt->fetch();
 
-        if($stmt->rowCount() === 1) {
+        if($res->rowCount() === 1) {
             $pokemon = new Pokemon();
+            $pokemon->hydrate($res);
         }
         else $pokemon = null;
 
