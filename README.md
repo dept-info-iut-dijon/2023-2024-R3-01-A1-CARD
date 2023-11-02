@@ -9,4 +9,6 @@ TP5-10 R3.01 Développement web Pokédex
 ## Dernières avancées
 ✅ TP05 terminé avec le bonus
 
-👉 TP06 - 3.2
+✅ TP06 terminé avec le bonus
+
+👉 TP07
