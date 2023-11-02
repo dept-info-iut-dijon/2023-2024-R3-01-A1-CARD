@@ -1,0 +1,1 @@
+<h1>Ajouter un type de pokémon</h1>
