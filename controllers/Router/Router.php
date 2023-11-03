@@ -9,6 +9,7 @@ require_once('controllers/Router/Route/RouteAddType.php');
 require_once('controllers/Router/Route/RouteDelPokemon.php');
 require_once('controllers/Router/Route/RouteEditPokemon.php');
 require_once('controllers/Router/Route/RouteIndex.php');
+require_once('controllers/Router/Route/RouteNotFound.php');
 require_once('controllers/Router/Route/RouteSearch.php');
 
 use controllers\MainController;
@@ -18,6 +19,7 @@ use controllers\Router\Route\RouteAddType;
 use controllers\Router\Route\RouteDelPokemon;
 use controllers\Router\Route\RouteEditPokemon;
 use controllers\Router\Route\RouteIndex;
+use controllers\Router\Route\RouteNotFound;
 use controllers\Router\Route\RouteSearch;
 
 /**
@@ -57,7 +59,8 @@ class Router
             "add-pokemon-type" => new RouteAddType($this->ctrlList["pokemon"]),
             "search" => new RouteSearch($this->ctrlList["main"]),
             "del-pokemon" => new RouteDelPokemon($this->ctrlList["pokemon"]),
-            "edit-pokemon" => new RouteEditPokemon($this->ctrlList["pokemon"])
+            "edit-pokemon" => new RouteEditPokemon($this->ctrlList["pokemon"]),
+            "not-found" => new RouteNotFound($this->ctrlList["main"])
         ];
     }
 
@@ -71,9 +74,16 @@ class Router
     {
         $action = $get[$this->action_key] ?? $post[$this->action_key] ?? "index";
         if ($post === []) {
-            $this->routeList[$action]->action($get);
+            if (!empty($this->routeList[$action])) {
+                $this->routeList[$action]->action($get);
+            }
+            else {
+                http_response_code(404);
+                $this->routeList["not-found"]->action($get);
+            }
         } else {
             $this->routeList[$action]->action($post, 'POST');
         }
+
     }
 }

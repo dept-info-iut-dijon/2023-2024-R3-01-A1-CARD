@@ -44,4 +44,10 @@ class MainController
         $searchView = new View('Search');
         $searchView->generer(["champs" => $champs]);
     }
+
+    public function NotFound(): void
+    {
+        $notFoundView = new View('NotFound');
+        $notFoundView->generer([]);
+    }
 }
