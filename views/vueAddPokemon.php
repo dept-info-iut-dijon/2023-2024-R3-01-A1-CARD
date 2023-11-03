@@ -4,7 +4,7 @@
     </div>
 <?php endif ?>
 
-<h1><?= !empty($pokemon) ? "Modifier {$pokemon->getNomEspece()}" : 'Ajouter un pokémon' ?></h1>
+<h1><?= !empty($pokemon) ? "Modifier {$pokemon->getNomEspece()}" : "Ajouter un pokémon" ?></h1>
 
 <form action="index.php?action=<?= !empty($pokemon) ? 'edit' : 'add' ?>-pokemon" method="post">
     <div class="form-group">
@@ -66,6 +66,9 @@
         <label for="urlImg">Image</label>
         <input type="text" name="urlImg" id="urlImg" class="form-control"<?php if (!empty($pokemon)) echo " value='{$pokemon->getUrlImg()}'"; ?>>
     </div>
+    <?php if (!empty($pokemon)) : ?>
+        <input type="hidden" id="idPokemon" name="idPokemon" value="<?= $pokemon->getIdPokemon() ?>">
+    <?php endif ?>
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="<?= !empty($pokemon) ? "Mettre à jour {$pokemon->getNomEspece()}" : 'Ajouter le pokémon' ?>">
     </div>

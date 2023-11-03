@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="public/css/main.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $titre ?></title>
+    <link rel="icon" href="public/img/logo.png">
 </head>
 
 <body>
