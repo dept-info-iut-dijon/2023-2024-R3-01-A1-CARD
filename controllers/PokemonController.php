@@ -80,15 +80,26 @@ class PokemonController
      * @param array $params Paramètres à passer à la page
      * @return void
      */
-    public function delPokemon(int $idPokemon): void
+    public function deletePokemonAndIndex(int $idPokemon): void
     {
         // création du manager de pokémons
         $manager = new PokemonManager();
 
+        // suppression du pokémon
+        if ($manager->deletePokemon($idPokemon) > 0) {
+            $msgType = "success";
+            $message = "Le pokémon {$idPokemon} a bien été supprimé";
+        }
+        else {
+            $msgType = "danger";
+            $message = "Le pokémon {$idPokemon} n'a pas pu être supprimé";
+        }
+
         // récupération d'une liste de pokémons, un pokémon, et un pokémon inexistant
         $pokemons = $manager->getAll();
 
+        // affiche l'index avec le message
         $delPokemonView = new View('Index');
-        $delPokemonView->generer(["pokemons" => $pokemons, "msgType" => "success", "message" => "Le pokémon {$idPokemon} a bien été supprimé"]);
+        $delPokemonView->generer(["pokemons" => $pokemons, "msgType" => $msgType, "message" => $message]);
     }
 }

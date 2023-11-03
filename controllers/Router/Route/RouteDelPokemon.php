@@ -33,8 +33,12 @@ class RouteDelPokemon extends Route
      */
     protected function get(array $params = []): void
     {
-        $idPokemon = $params['idPokemon'];
-        $this->controller->delPokemon($idPokemon);
+        if (!empty($params['idPokemon']) and is_numeric($params['idPokemon']))
+            $idPokemon = $params['idPokemon'];
+        else
+            throw new Exception("Identifiant de pokémon invalide");
+
+        $this->controller->deletePokemonAndIndex($idPokemon);
     }
 
     /**

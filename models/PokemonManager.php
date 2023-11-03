@@ -79,4 +79,11 @@ class PokemonManager extends Model
         // retourne le pokémon créé à l'instant
         return $res;
     }
+
+    public function deletePokemon(int $idPokemon = -1): int
+    {
+        $sql = "DELETE FROM pokemon WHERE idPokemon = ?";
+        $params = [$idPokemon];
+        return $this->execRequest($sql, $params)->rowCount();
+    }
 }
