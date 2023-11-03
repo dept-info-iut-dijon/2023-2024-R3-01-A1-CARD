@@ -63,8 +63,8 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="image">Image</label>
-        <input type="file" name="image" id="image" class="form-control" required>
+        <label for="urlImg">Image</label>
+        <input type="text" name="urlImg" id="urlImg" class="form-control" required>
     </div>
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="Ajouter le pokémon">

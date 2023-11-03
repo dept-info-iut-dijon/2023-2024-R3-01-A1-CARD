@@ -3,9 +3,11 @@
 namespace controllers;
 
 require_once("models/PokemonManager.php");
+require_once("models/Pokemon.php");
 require_once("views/View.php");
 
 use models\PokemonManager;
+use models\Pokemon;
 use views\View;
 
 /**
@@ -24,6 +26,28 @@ class PokemonController
     {
         $addPokemonView = new View('AddPokemon');
         $addPokemonView->generer(["message" => $message]);
+    }
+
+    public function addPokemon(array $params): void
+    {
+        // création du manager de pokémons
+        $manager = new PokemonManager();
+
+        // création d'un pokémon
+        $pokemon = new Pokemon();
+        $pokemon->hydrate($params);
+
+        // ajout du pokémon en bdd
+        $pokemon = $manager->createPokemon($pokemon);
+
+        $msgType = ($pokemon !== false) ? "success" : "danger";
+        $msg = ($pokemon !== false) ? "Le pokémon {$pokemon->getNomEspece()} a bien été ajouté" : "Le pokémon {$pokemon->getNomEspece()} n'a pas pu être ajouté";
+
+        $pokemons = $manager->getAll();
+
+        // affichage de l'index
+        $indexView = new View('Index');
+        $indexView->generer(["pokemons" => $pokemons, "msgType" => $msgType, "message" => $msg]);
     }
 
     /**
@@ -61,6 +85,6 @@ class PokemonController
         $pokemons = $manager->getAll();
 
         $delPokemonView = new View('Index');
-        $delPokemonView->generer(["pokemons" => $pokemons, "message" => "Le pokémon {$idPokemon} a bien été supprimé"]);
+        $delPokemonView->generer(["pokemons" => $pokemons, "msgType" => "success", "message" => "Le pokémon {$idPokemon} a bien été supprimé"]);
     }
 }

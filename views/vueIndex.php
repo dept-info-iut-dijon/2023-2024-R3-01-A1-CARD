@@ -1,5 +1,5 @@
 <?php if (!empty($message)): ?>
-    <div class="notif notif-success"><?= $message ?></div>
+    <div class="notif notif-<?= $msgType ?>"><?= $message ?></div>
 <?php endif ?>
 
 <h1>Pokémons</h1>
