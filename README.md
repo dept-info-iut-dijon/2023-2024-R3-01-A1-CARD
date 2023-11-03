@@ -13,5 +13,5 @@ TP5-10 R3.01 Développement web Pokédex
 
 ✅ TP07 terminé avec le bonus
 
-👉 TP08
+👉 TP08 terminé jusqu'au 3
   • 2.2 : "Changer le titre de la page" comment ?
