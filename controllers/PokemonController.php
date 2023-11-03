@@ -50,7 +50,7 @@ class PokemonController
         }
         else {
             // affichage de la page d'ajout avec erreur
-            $this->displayAddPokemon(["message" => "Le pokémon {$pokemon->getNomEspece()} n'a pas pu être ajouté"]);
+            $this->displayAddPokemon("Le pokémon n'a pas pu être ajouté");
         }
     }
 
@@ -83,6 +83,29 @@ class PokemonController
         }
         else
             $this->displayAddPokemon("Le pokémon {$idPokemon} n'existe pas");
+    }
+
+    /**
+     * Modifie un pokémon avec les données passées en paramètre
+     * @param array $dataPokemon Nouvelles données du pokémon
+     * @return void
+     */
+    public function editPokemonAndIndex(array $dataPokemon): void
+    {
+        $manager = new PokemonManager();
+
+        $pokemon = $manager->getById($dataPokemon['idPokemon']);
+
+        if($pokemon !== null) {
+            $manager->editPokemon($dataPokemon);
+
+            $pokemons = $manager->getAll();
+
+            $indexView = new View('Index');
+            $indexView->generer(['pokemons' => $pokemons, "msgType" => "success", "message"=> "Le pokémon {$pokemon->getNomEspece()} a été mis à jour"]);
+        }
+        else
+            $this->displayAddPokemon("Le pokémon n'a pas pu être modifié");
     }
 
     /**

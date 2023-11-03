@@ -63,6 +63,8 @@ class PokemonManager extends Model
     {
         $res = false;
 
+        if($pokemon->getTypeTwo() === $pokemon->getTypeOne()) $pokemon->setTypeTwo(null);
+
         $sql = "INSERT INTO pokemon (nomEspece, description, typeOne, typeTwo, urlImg) VALUES (?, ?, ?, ?, ?);";
         if($this->execRequest($sql, [
             $pokemon->getNomEspece(),
@@ -80,6 +82,36 @@ class PokemonManager extends Model
         return $res;
     }
 
+    /**
+     * Modifie un pokémon en bdd
+     * @param array $dataPokemon Données du pokémon à modifier
+     * @return bool Vrai si le pokémon a été modifié, faux sinon
+     */
+    public function editPokemon(array $dataPokemon): bool
+    {
+        $res = false;
+
+        if($dataPokemon["typeTwo"] === $dataPokemon["typeOne"]) $dataPokemon["typeTwo"] = null;
+
+        $sql = "UPDATE pokemon SET nomEspece = ?, description = ?, typeOne = ?, typeTwo = ?, urlImg = ? WHERE idPokemon = ?;";
+        if($this->execRequest($sql, [
+            $dataPokemon["nomEspece"],
+            $dataPokemon["description"],
+            $dataPokemon["typeOne"],
+            $dataPokemon["typeTwo"] === "null" ? null : $dataPokemon["typeTwo"],
+            $dataPokemon["urlImg"],
+            $dataPokemon["idPokemon"]
+        ])) $res = true;
+
+        // retourne le pokémon modifié à l'instant
+        return $res;
+    }
+
+    /**
+     * Supprime un pokémon de la bdd
+     * @param int $idPokemon Pokémon à supprimer
+     * @return int Nombre de lignes affectées
+     */
     public function deletePokemon(int $idPokemon = -1): int
     {
         $sql = "DELETE FROM pokemon WHERE idPokemon = ?";

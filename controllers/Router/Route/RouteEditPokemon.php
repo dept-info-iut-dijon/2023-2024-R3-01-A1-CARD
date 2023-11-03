@@ -50,6 +50,21 @@ class RouteEditPokemon extends Route
      */
     protected function post(array $params = []): void
     {
-        // TODO: Implement post() method.
+        try {
+            $data = [
+                "nomEspece" => parent::getParam($params, "nomEspece", false),
+                "description" => parent::getParam($params, "description"),
+                "typeOne" => parent::getParam($params, "typeOne", false),
+                "typeTwo" => (parent::getParam($params, "typeTwo") !== "null") ? parent::getParam($params, "typeTwo") : null,
+                "urlImg" => parent::getParam($params, "urlImg"),
+                "idPokemon" => parent::getParam($params, "idPokemon", false)
+            ];
+        }
+        catch (Exception $e) {
+            $this->controller->displayAddPokemon($e->getMessage());
+            return;
+        }
+
+        $this->controller->editPokemonAndIndex($data);
     }
 }
