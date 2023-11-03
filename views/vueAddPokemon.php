@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
+        <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
     </div>
     <div class="form-group">
         <label for="typeOne">Type 1</label>
@@ -40,8 +40,8 @@
     </div>
     <div class="form-group">
         <label for="typeTwo">Type 2</label>
-        <select name="typeTwo" id="typeTwo" class="form-control" required>
-            <option value="null">Aucun</option>
+        <select name="typeTwo" id="typeTwo" class="form-control">
+            <option value="null" selected>Aucun</option>
             <option value="Acier">Acier</option>
             <option value="Combat">Combat</option>
             <option value="Dragon">Dragon</option>
@@ -64,7 +64,7 @@
     </div>
     <div class="form-group">
         <label for="urlImg">Image</label>
-        <input type="text" name="urlImg" id="urlImg" class="form-control" required>
+        <input type="text" name="urlImg" id="urlImg" class="form-control">
     </div>
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="Ajouter le pokémon">

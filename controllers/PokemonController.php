@@ -28,26 +28,30 @@ class PokemonController
         $addPokemonView->generer(["message" => $message]);
     }
 
-    public function addPokemon(array $params): void
+    public function addPokemon(array $data): void
     {
         // création du manager de pokémons
         $manager = new PokemonManager();
 
         // création d'un pokémon
         $pokemon = new Pokemon();
-        $pokemon->hydrate($params);
+        $pokemon->hydrate($data);
 
         // ajout du pokémon en bdd
         $pokemon = $manager->createPokemon($pokemon);
 
-        $msgType = ($pokemon !== false) ? "success" : "danger";
-        $msg = ($pokemon !== false) ? "Le pokémon {$pokemon->getNomEspece()} a bien été ajouté" : "Le pokémon {$pokemon->getNomEspece()} n'a pas pu être ajouté";
+        // si le pokémon a bien été créé
+        if ($pokemon !== false) {
+            $pokemons = $manager->getAll();
 
-        $pokemons = $manager->getAll();
-
-        // affichage de l'index
-        $indexView = new View('Index');
-        $indexView->generer(["pokemons" => $pokemons, "msgType" => $msgType, "message" => $msg]);
+            // affichage de l'index avec confirmation
+            $indexView = new View('Index');
+            $indexView->generer(["pokemons" => $pokemons, "msgType" => "success", "message" => "Le pokémon {$pokemon->getNomEspece()} a bien été ajouté"]);
+        }
+        else {
+            // affichage de la page d'ajout avec erreur
+            $this->displayAddPokemon(["message" => "Le pokémon {$pokemon->getNomEspece()} n'a pas pu être ajouté"]);
+        }
     }
 
     /**

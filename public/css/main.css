@@ -103,6 +103,10 @@ form .form-group label {
     font-weight: 500;
     color: var(--primary-color);
 }
+form .form-group label:has(~ [required]):after {
+    content: ' *';
+    color: var(--danger-color);
+}
 form .form-group .form-control {
     padding: 10px;
     border-radius: 5px;
