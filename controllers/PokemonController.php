@@ -71,8 +71,18 @@ class PokemonController
      */
     public function displayEditPokemon(int $idPokemon): void
     {
-        $editPokemonView = new View('AddPokemon');
-        $editPokemonView->generer(["idPokemon" => $idPokemon]);
+        // création du manager de pokémons
+        $manager = new PokemonManager();
+
+        // récupération du pokémon
+        $pokemon = $manager->getById($idPokemon);
+
+        if($pokemon !== null) {
+            $editPokemonView = new View('AddPokemon');
+            $editPokemonView->generer(["pokemon" => $pokemon]);
+        }
+        else
+            $this->displayAddPokemon("Le pokémon {$idPokemon} n'existe pas");
     }
 
     /**

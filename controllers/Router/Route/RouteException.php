@@ -9,10 +9,10 @@ use controllers\Router\Route;
 use controllers\MainController;
 
 /**
- * Classe RouteNotFound
+ * Classe RouteException
  * Route pour la page d'erreur
  */
-class RouteNotFound extends Route
+class RouteException extends Route
 {
     private MainController $controller;
 
@@ -33,7 +33,7 @@ class RouteNotFound extends Route
      */
     protected function get(array $params = []): void
     {
-        $this->controller->NotFound();
+        $this->controller->NotFound($params);
     }
 
     /**

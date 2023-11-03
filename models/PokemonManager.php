@@ -45,7 +45,7 @@ class PokemonManager extends Model
         $stmt = $this->execRequest($sql, $params);
         $res = $stmt->fetch();
 
-        if($res->rowCount() === 1) {
+        if($res) {
             $pokemon = new Pokemon();
             $pokemon->hydrate($res);
         }

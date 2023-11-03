@@ -1,6 +1,6 @@
 <?php
 
-namespace models;
+namespace config;
 
 /**
  * Classe Config
@@ -15,7 +15,7 @@ class Config
     private string $pass;
 
     private function __construct() {
-        if (file_exists("models/dev.ini")) {
+        if (file_exists("config/dev.ini")) {
             $config = parse_ini_file("dev.ini");
             $this->dsn = $config["dsn"];
             $this->user = $config["user"];

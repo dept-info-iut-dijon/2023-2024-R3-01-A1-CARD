@@ -2,11 +2,12 @@
 
 namespace models;
 
-require_once("models/Config.php");
+require_once("config/Config.php");
 
+use config\Config;
 use PDO;
-use PDOStatement;
 use PDOException;
+use PDOStatement;
 
 
 /**

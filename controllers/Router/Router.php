@@ -9,7 +9,7 @@ require_once('controllers/Router/Route/RouteAddType.php');
 require_once('controllers/Router/Route/RouteDelPokemon.php');
 require_once('controllers/Router/Route/RouteEditPokemon.php');
 require_once('controllers/Router/Route/RouteIndex.php');
-require_once('controllers/Router/Route/RouteNotFound.php');
+require_once('controllers/Router/Route/RouteException.php');
 require_once('controllers/Router/Route/RouteSearch.php');
 
 use controllers\MainController;
@@ -19,7 +19,7 @@ use controllers\Router\Route\RouteAddType;
 use controllers\Router\Route\RouteDelPokemon;
 use controllers\Router\Route\RouteEditPokemon;
 use controllers\Router\Route\RouteIndex;
-use controllers\Router\Route\RouteNotFound;
+use controllers\Router\Route\RouteException;
 use controllers\Router\Route\RouteSearch;
 
 /**
@@ -60,7 +60,7 @@ class Router
             "search" => new RouteSearch($this->ctrlList["main"]),
             "del-pokemon" => new RouteDelPokemon($this->ctrlList["pokemon"]),
             "edit-pokemon" => new RouteEditPokemon($this->ctrlList["pokemon"]),
-            "not-found" => new RouteNotFound($this->ctrlList["main"])
+            "exception" => new RouteException($this->ctrlList["main"])
         ];
     }
 
@@ -73,17 +73,19 @@ class Router
     public function routing(array $get = [], array $post = []): void
     {
         $action = $get[$this->action_key] ?? $post[$this->action_key] ?? "index";
-        if ($post === []) {
-            if (!empty($this->routeList[$action])) {
+        try  {
+            if ($post === []) {
                 $this->routeList[$action]->action($get);
             }
             else {
-                http_response_code(404);
-                $this->routeList["not-found"]->action($get);
+                $this->routeList[$action]->action($post, 'POST');
             }
-        } else {
-            $this->routeList[$action]->action($post, 'POST');
         }
-
+        catch (\Exception $e)
+        {
+            http_response_code(404);
+            $get["error"] = $e->getMessage();
+            $this->routeList["exception"]->action($get);
+        }
     }
 }
