@@ -1,3 +1,9 @@
+<?php if (!empty($message)): ?>
+    <div class="notif notif-danger" role="alert">
+        <?= $message ?>
+    </div>
+<?php endif ?>
+
 <h1>Ajouter un pokémon</h1>
 
 <form action="index.php?action=add-pokemon" method="post">

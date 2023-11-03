@@ -33,7 +33,8 @@ class RouteEditPokemon extends Route
      */
     protected function get(array $params = []): void
     {
-        $this->controller->displayEditPokemon($params);
+        $idPokemon = $params['idPokemon'];
+        $this->controller->displayEditPokemon($idPokemon);
     }
 
     /**

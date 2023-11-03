@@ -33,7 +33,8 @@ class RouteDelPokemon extends Route
      */
     protected function get(array $params = []): void
     {
-        $this->controller->delPokemon($params);
+        $idPokemon = $params['idPokemon'];
+        $this->controller->delPokemon($idPokemon);
     }
 
     /**
