@@ -3,7 +3,11 @@ namespace controllers;
 
 require_once("views/View.php");
 require_once("models/PokemonManager.php");
+require_once("models/Pokemon.php");
 
+use models\Pokemon;
+use ReflectionClass;
+use ReflectionProperty;
 use views\View;
 use models\PokemonManager;
 
@@ -36,7 +40,8 @@ class MainController
      */
     public function Search(): void
     {
+        $champs = (new ReflectionClass(new Pokemon()))->getProperties(ReflectionProperty::IS_PRIVATE);
         $searchView = new View('Search');
-        $searchView->generer([]);
+        $searchView->generer(["champs" => $champs]);
     }
 }

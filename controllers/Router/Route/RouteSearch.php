@@ -43,6 +43,6 @@ class RouteSearch extends Route
      */
     protected function post(array $params = []): void
     {
-        // TODO: Implement post() method.
+
     }
 }

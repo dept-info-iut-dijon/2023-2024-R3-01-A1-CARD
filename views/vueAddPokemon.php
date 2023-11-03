@@ -61,6 +61,6 @@
         <input type="file" name="image" id="image" class="form-control" required>
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" id="addPokemon" name="addPokemon" value="Ajouter le pokémon">
+        <input type="submit" class="btn btn-primary" value="Ajouter le pokémon">
     </div>
 </form>
