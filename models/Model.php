@@ -23,7 +23,7 @@ abstract class Model
      * @param array|null $params Paramètres de la requête
      * @return PDOStatement|false Résultats de la requête
      */
-    protected function execRequest(string $sql, array $params = null): PDOStatement|false
+    protected function execRequest(string $sql, ?array $params = null): PDOStatement|false
     {
         $res = false;
 

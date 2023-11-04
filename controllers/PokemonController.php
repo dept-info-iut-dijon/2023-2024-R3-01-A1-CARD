@@ -28,6 +28,11 @@ class PokemonController
         $addPokemonView->generer(["message" => $message]);
     }
 
+    /**
+     * Ajoute un pokémon en bdd
+     * @param array $data Données du pokémon à ajouter
+     * @return void
+     */
     public function addPokemon(array $data): void
     {
         // création du manager de pokémons

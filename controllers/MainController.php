@@ -38,14 +38,28 @@ class MainController
      * Affiche la page de recherche de pokémon
      * @return void
      */
-    public function Search(): void
+    public function Search(?array $params = null): void
     {
+        $data = null;
+        $pokemons = [];
+
+        if($params != null)
+        {
+            $data = [
+                'recherche' => $params['recherche'],
+                'champ' => $params['champ']
+            ];
+
+            $manager = new PokemonManager();
+            $pokemons = $manager->searchPokemons($params);
+        }
+
         $champs = (new ReflectionClass(new Pokemon()))->getProperties(ReflectionProperty::IS_PRIVATE);
         $searchView = new View('Search');
-        $searchView->generer(["champs" => $champs]);
+        $searchView->generer(["champs" => $champs, "data" => $data, "pokemons" => $pokemons]);
     }
 
-    public function NotFound(?array $params = null): void
+    public function Exception(?array $params = null): void
     {
         $notFoundView = new View('NotFound');
         $notFoundView->generer($params);

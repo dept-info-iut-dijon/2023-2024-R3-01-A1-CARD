@@ -4,8 +4,11 @@ namespace models;
 
 require_once("models/Model.php");
 require_once("models/Pokemon.php");
+require_once("config/Config.php");
 
+use config\Config;
 use models\Model;
+use PDO;
 
 /**
  * Classe PokemonManager
@@ -52,6 +55,44 @@ class PokemonManager extends Model
         else $pokemon = null;
 
         return $pokemon;
+    }
+
+    public function searchPokemons(array $params): array
+    {
+        // la requête "SELECT * FROM pokemon WHERE ? LIKE ?" ne fonctionne pas car la colonne à rechercher ne peut pas être passée en paramètre
+        //alors j'utilise un switch pour chaque champ possible
+        switch($params['champ']) {
+            case 'idPokemon':
+                $sql = "SELECT * FROM pokemon WHERE idPokemon LIKE ?";
+                break;
+            case 'nomEspece':
+                $sql = "SELECT * FROM pokemon WHERE nomEspece LIKE ?";
+                break;
+            case 'typeOne':
+                $sql = "SELECT * FROM pokemon WHERE typeOne LIKE ?";
+                break;
+            case 'typeTwo':
+                $sql = "SELECT * FROM pokemon WHERE typeTwo LIKE ?";
+                break;
+            case 'urlImg':
+                $sql = "SELECT * FROM pokemon WHERE urlImg LIKE ?";
+                break;
+            default: // recherche par défaut dans la description des pokémons
+                $sql = "SELECT * FROM pokemon WHERE description LIKE ?";
+                break;
+        }
+        $params = ["%".$params["recherche"]."%"];
+        $stmt = $this->execRequest($sql, $params);
+        $res = $stmt->fetchAll();
+
+        $pokemons = [];
+        foreach ($res as $pokemon) {
+            $p = new Pokemon();
+            $p->hydrate($pokemon);
+            $pokemons[] = $p;
+        }
+
+        return $pokemons;
     }
 
     /**

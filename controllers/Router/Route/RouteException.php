@@ -33,7 +33,7 @@ class RouteException extends Route
      */
     protected function get(array $params = []): void
     {
-        $this->controller->NotFound($params);
+        $this->controller->Exception($params);
     }
 
     /**
