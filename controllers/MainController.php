@@ -61,7 +61,7 @@ class MainController
 
     public function Exception(?array $params = null): void
     {
-        $notFoundView = new View('NotFound');
+        $notFoundView = new View('Exception');
         $notFoundView->generer($params);
     }
 }

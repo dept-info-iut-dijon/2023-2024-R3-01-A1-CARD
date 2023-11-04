@@ -1,3 +1,5 @@
+<?php include('message.php'); ?>
+
 <h1>Rechercher un pokémon</h1>
 
 <form action="" method="POST">

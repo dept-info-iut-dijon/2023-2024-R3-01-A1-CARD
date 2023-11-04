@@ -1,3 +1,5 @@
+<?php include('message.php'); ?>
+
 <h1>Ajouter un type de pokémon</h1>
 
 <form action="" method="POST">

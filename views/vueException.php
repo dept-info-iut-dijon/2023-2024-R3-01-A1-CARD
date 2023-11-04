@@ -1,4 +1,4 @@
-<h1>Erreur <?= http_response_code() ?></h1>
+<h1>Une erreur est survenue</h1>
 
 <div class="notif notif-danger"><?= $error ?? "La page que vous recherchez n'existe pas." ?></div>
 

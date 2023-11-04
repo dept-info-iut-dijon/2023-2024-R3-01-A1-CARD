@@ -2,10 +2,12 @@
 
 namespace controllers;
 
+require_once("helpers/Message.php");
 require_once("models/PokemonManager.php");
 require_once("models/Pokemon.php");
 require_once("views/View.php");
 
+use helpers\Message;
 use models\PokemonManager;
 use models\Pokemon;
 use views\View;
@@ -24,6 +26,8 @@ class PokemonController
      */
     public function displayAddPokemon(?string $message = null): void
     {
+        if($message !== null) $message = new Message($message, "Erreur", "danger");
+
         $addPokemonView = new View('AddPokemon');
         $addPokemonView->generer(["message" => $message]);
     }
@@ -49,9 +53,11 @@ class PokemonController
         if ($pokemon !== false) {
             $pokemons = $manager->getAll();
 
+            $message = new Message("Le pokémon {$pokemon->getNomEspece()} a bien été ajouté", "Succès", "success");
+
             // affichage de l'index avec confirmation
             $indexView = new View('Index');
-            $indexView->generer(["pokemons" => $pokemons, "msgType" => "success", "message" => "Le pokémon {$pokemon->getNomEspece()} a bien été ajouté"]);
+            $indexView->generer(["pokemons" => $pokemons, "message" => $message]);
         }
         else {
             // affichage de la page d'ajout avec erreur
@@ -125,12 +131,10 @@ class PokemonController
 
         // suppression du pokémon
         if ($manager->deletePokemon($idPokemon) > 0) {
-            $msgType = "success";
-            $message = "Le pokémon {$idPokemon} a bien été supprimé";
+            $message = new Message("Le pokémon {$idPokemon} a bien été supprimé", "Succès", "success");
         }
         else {
-            $msgType = "danger";
-            $message = "Le pokémon {$idPokemon} n'a pas pu être supprimé";
+            $message = new Message("Le pokémon {$idPokemon} n'a pas pu être supprimé", "Erreur", "danger");
         }
 
         // récupération d'une liste de pokémons, un pokémon, et un pokémon inexistant
@@ -138,6 +142,6 @@ class PokemonController
 
         // affiche l'index avec le message
         $delPokemonView = new View('Index');
-        $delPokemonView->generer(["pokemons" => $pokemons, "msgType" => $msgType, "message" => $message]);
+        $delPokemonView->generer(["pokemons" => $pokemons, "message" => $message]);
     }
 }

@@ -74,6 +74,7 @@ class Router
     {
         $action = $get[$this->action_key] ?? $post[$this->action_key] ?? "index";
         try  {
+            if(!isset($this->routeList[$action])) throw new \Exception("Action inconnue");
             if ($post === []) {
                 $this->routeList[$action]->action($get);
             }

@@ -50,6 +50,14 @@ section {
     font-size: 14px;
     transition: var(--transition);
 }
+.notif h2 {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.notif p {
+    font-size: 14px;
+}
 .notif-success {
     background-color: var(--success-color);
     color: var(--bg-color);
