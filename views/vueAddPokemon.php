@@ -1,8 +1,4 @@
-<?php if (!empty($message)): ?>
-    <div class="notif notif-danger" role="alert">
-        <?= $message ?>
-    </div>
-<?php endif ?>
+<?php include('message.php'); ?>
 
 <h1><?= !empty($pokemon) ? "Modifier {$pokemon->getNomEspece()}" : "Ajouter un pokémon" ?></h1>
 
