@@ -17,7 +17,12 @@
     </div>
     <!-- Menu -->
     <nav>
-        <ul>
+        <svg onclick="document.getElementById('navbar').classList.toggle('toggled')" class="btn-burger" width="30px" height="30px" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 7L4 7" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M20 12L4 12" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M20 17L4 17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <ul id="navbar">
             <li><a href="index.php">Accueil</a></li>
             <li><a href="index.php?action=add-pokemon">Ajouter</a></li>
             <li><a href="index.php?action=add-pokemon-type">Types</a></li>

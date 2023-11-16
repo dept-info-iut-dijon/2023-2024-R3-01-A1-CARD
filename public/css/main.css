@@ -23,6 +23,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--bg-color);
     color: var(--txt-color);
+    overflow-x: hidden;
 }
 main {
     padding: 30px 60px;
@@ -153,6 +154,19 @@ header .logo {
 header .logo img {
     height: 100%;
 }
+
+header .btn-burger {
+    display: none;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+header .btn-burger path {
+    transition: var(--transition);
+}
+header .btn-burger:has(~ ul.toggled) path:nth-child(1) {
+    transform: translateX(25%);
+}
+
 header nav ul {
     display: flex;
     justify-content: space-between;
@@ -217,4 +231,36 @@ section.pokemons .pokemon .actions {
     justify-content: space-between;
     align-items: center;
     gap: 5px;
+}
+
+/* ---------{ Responsive mobile }--------- */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 0 30px;
+    }
+    header .btn-burger { display: inline-block; }
+    header nav {
+        position: relative;
+    }
+    header nav ul {
+        position: absolute;
+        top: 0;
+        right: -30px;
+        padding: 50px 200px 20px 20px;
+        height: 100vh;
+        max-width: 100%;
+        background: var(--bg-color);
+        flex-direction: column;
+        justify-content: flex-start;
+        z-index: -1;
+        transform: translateX(100%);
+        transition: var(--transition);
+    }
+    header nav ul.toggled {
+        transform: translateX(0);
+    }
+    header nav ul li {
+        display: block;
+        min-width: 100px;
+    }
 }
