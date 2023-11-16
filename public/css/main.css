@@ -233,6 +233,19 @@ section.pokemons .pokemon .actions {
     gap: 5px;
 }
 
+/* ---------{ Footer }--------- */
+footer {
+    margin: 0;
+    padding: 30px 60px;
+    width: 100%;
+    text-align: center;
+    background: var(--primary-color);
+}
+footer p {
+    color: white;
+    font-size: 14px;
+}
+
 /* ---------{ Responsive mobile }--------- */
 @media screen and (max-width: 768px) {
     header {
@@ -244,15 +257,16 @@ section.pokemons .pokemon .actions {
     }
     header nav ul {
         position: absolute;
-        top: 0;
+        top: -10px;
         right: -30px;
         padding: 50px 200px 20px 20px;
         height: 100vh;
         max-width: 100%;
-        background: var(--bg-color);
+        background: #edf1f5;
         flex-direction: column;
         justify-content: flex-start;
         z-index: -1;
+        box-shadow: var(--shadow);
         transform: translateX(100%);
         transition: var(--transition);
     }
@@ -261,6 +275,7 @@ section.pokemons .pokemon .actions {
     }
     header nav ul li {
         display: block;
+        padding: 15px 20px;
         min-width: 100px;
     }
 }

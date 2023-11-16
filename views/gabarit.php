@@ -35,7 +35,7 @@
     <?= $contenu ?>
 </main>
 <footer>
-
+    <p>&copy; <?= date('Y') ?> • Semestre 3 • TP Pokédex • Romain Card</p>
 </footer>
 </body>
 
