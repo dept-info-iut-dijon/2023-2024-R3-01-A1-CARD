@@ -112,8 +112,10 @@ class PokemonController
 
             $pokemons = $manager->getAll();
 
+            $message = new Message("Le pokémon {$pokemon->getNomEspece()} a été mis à jour", "Pokémon modifié", "success");
+
             $indexView = new View('Index');
-            $indexView->generer(['pokemons' => $pokemons, "msgType" => "success", "message"=> "Le pokémon {$pokemon->getNomEspece()} a été mis à jour"]);
+            $indexView->generer(['pokemons' => $pokemons, "msgType" => "success", "message"=> $message]);
         }
         else
             $this->displayAddPokemon("Le pokémon n'a pas pu être modifié");
