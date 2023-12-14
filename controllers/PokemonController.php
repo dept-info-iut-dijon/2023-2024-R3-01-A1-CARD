@@ -4,10 +4,14 @@ namespace controllers;
 
 require_once("helpers/Message.php");
 require_once("models/PokemonManager.php");
+require_once("models/PkmnTypeManager.php");
 require_once("models/Pokemon.php");
+require_once("models/PkmnType.php");
 require_once("views/View.php");
 
 use helpers\Message;
+use models\PkmnType;
+use models\PkmnTypeManager;
 use models\PokemonManager;
 use models\Pokemon;
 use views\View;
@@ -73,6 +77,29 @@ class PokemonController
     {
         $addTypeView = new View('AddType');
         $addTypeView->generer([]);
+    }
+
+    public function addType(array $data): void {
+        $message = new Message("Une erreur est survenue pendant l'ajout du type de pokémnon. Vérifiez vos saisies.", "Erreur survenue");
+
+        // je crée un manager de types
+        $typeManager = new PkmnTypeManager();
+        // je crée le type
+        $type = new PkmnType($data);
+        // j'ajoute le type à la base de données
+        if($typeManager->createPkmnType($type)) {
+            $message = new Message("Type de pokémon bien ajouté !", "Succès", "success");
+
+            // je récupère la liste des pokémons pour l'index
+            $pokemons = (new PokemonManager())->getAll();
+
+            $indexView = new View('Index');
+            $indexView->generer(["pokemons" => $pokemons, "message" => $message]);
+        }
+        else {
+            $addTypeView = new View('AddType');
+            $addTypeView->generer(["message" => $message]);
+        }
     }
 
     /**

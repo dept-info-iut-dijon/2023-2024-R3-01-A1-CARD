@@ -43,6 +43,11 @@ class RouteAddType extends Route
      */
     protected function post(array $params = []): void
     {
-        // TODO: Implement post() method.
+        $data = [
+            "nomType" => $this->getParam($params, "nomType", false),
+            "urlImg" => $this->getParam($params, "urlImg", false)
+        ];
+
+        $this->controller->addType($data);
     }
 }

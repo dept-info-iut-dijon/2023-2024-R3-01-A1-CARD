@@ -9,7 +9,7 @@ namespace models;
 class PkmnType
 {
     private ?int $idType;
-    private string $nom;
+    private string $nomType;
     private string $UrlImg;
 
     /**
@@ -31,14 +31,14 @@ class PkmnType
         $this->idType = $idType;
     }
 
-    public function getNom(): string
+    public function getNomType(): string
     {
-        return $this->nom;
+        return $this->nomType;
     }
 
-    public function setNom(string $nom): void
+    public function setNomType(string $nom): void
     {
-        $this->nom = $nom;
+        $this->nomType = $nom;
     }
 
     public function getUrlImg(): string

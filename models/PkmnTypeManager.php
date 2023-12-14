@@ -57,9 +57,9 @@ class PkmnTypeManager extends Model
     {
         $res = false;
 
-        $sql = "INSERT INTO pkmn_type(idType, nomType, urlImg) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO pkmn_type(nomType, urlImg) VALUES (?, ?)";
         if ($this->execRequest($sql, [
-            $pkmn_type->getNom(),
+            $pkmn_type->getNomType(),
             $pkmn_type->getUrlImg()
         ])) {
             $idPkmnType = $this->execRequest("SELECT LAST_INSERT_ID()")->fetch()[0];
@@ -77,7 +77,7 @@ class PkmnTypeManager extends Model
      */
     public function editPkmnType(PkmnType $pkmn_type): int {
         $sql = "UPDATE pkmn_type SET nomType = ?, urlImg = ? WHERE idType = ?";
-        $params = [$pkmn_type->getNom(), $pkmn_type->getUrlImg(), $pkmn_type->getIdType()];
+        $params = [$pkmn_type->getNomType(), $pkmn_type->getUrlImg(), $pkmn_type->getIdType()];
         return $this->execRequest($sql, $params);
     }
 

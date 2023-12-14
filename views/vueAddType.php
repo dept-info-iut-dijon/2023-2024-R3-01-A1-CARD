@@ -8,6 +8,10 @@
         <input type="text" name="nomType" id="nomType" class="form-control" required>
     </div>
     <div class="form-group">
+        <label for="urlImg">URL de l'image</label>
+        <input type="text" name="urlImg" id="urlImg" class="form-control" required>
+    </div>
+    <div class="form-group">
         <input type="submit" class="btn btn-primary" value="Ajouter le type">
     </div>
 </form>
