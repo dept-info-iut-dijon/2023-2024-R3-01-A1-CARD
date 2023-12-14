@@ -61,6 +61,7 @@ class PokemonManager extends Model
     {
         // la requête "SELECT * FROM pokemon WHERE ? LIKE ?" ne fonctionne pas car la colonne à rechercher ne peut pas être passée en paramètre
         //alors j'utilise un switch pour chaque champ possible
+        $data = [];
         switch($params['champ']) {
             case 'idPokemon':
                 $sql = "SELECT * FROM pokemon WHERE idPokemon LIKE ?";
@@ -69,10 +70,12 @@ class PokemonManager extends Model
                 $sql = "SELECT * FROM pokemon WHERE nomEspece LIKE ?";
                 break;
             case 'typeOne':
-                $sql = "SELECT * FROM pokemon JOIN pkmn_type ON pkmn_type.idType = pokemon.typeOne WHERE pkmn_type.nomType LIKE ?";
+                $sql = "SELECT * FROM pokemon JOIN pkmn_type ON pkmn_type.idType = pokemon.typeOne WHERE pokemon.typeOne = ? OR pkmn_type.nomType LIKE ?";
+                $data[] = $params['recherche'];
                 break;
             case 'typeTwo':
-                $sql = "SELECT * FROM pokemon JOIN pkmn_type ON pkmn_type.idType = pokemon.typeTwo WHERE pkmn_type.nomType LIKE ?";
+                $sql = "SELECT * FROM pokemon JOIN pkmn_type ON pkmn_type.idType = pokemon.typeTwo WHERE pokemon.typeTwo = ? OR pkmn_type.nomType LIKE ?";
+                $data[] = $params['recherche'];
                 break;
             case 'urlImg':
                 $sql = "SELECT * FROM pokemon WHERE urlImg LIKE ?";
@@ -81,8 +84,8 @@ class PokemonManager extends Model
                 $sql = "SELECT * FROM pokemon WHERE description LIKE ?";
                 break;
         }
-        $params = ["%".$params["recherche"]."%"];
-        $stmt = $this->execRequest($sql, $params);
+        $data[] = "%".$params["recherche"]."%";
+        $stmt = $this->execRequest($sql, $data);
         $res = $stmt->fetchAll();
 
         $pokemons = [];
