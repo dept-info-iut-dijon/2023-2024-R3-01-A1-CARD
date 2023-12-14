@@ -32,7 +32,7 @@
 </header>
 <!-- #contenu -->
 <main id="contenu">
-    <?= $contenu ?>
+    <?php echo $contenu ?>
 </main>
 <footer>
     <p>&copy; <?= date('Y') ?> • Semestre 3 • TP Pokédex • Romain Card</p>
