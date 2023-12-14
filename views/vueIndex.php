@@ -5,7 +5,7 @@
 <section class="pokemons">
     <?php foreach ($pokemons as $pokemon): ?>
         <article class="pokemon">
-            <img src="<?= $pokemon->getUrlImg() ?>" alt="<?= $pokemon->getNomEspece() ?>">
+            <img src="<?= ($pokemon->getUrlImg() != null) ? $pokemon->getUrlImg() : "public/img/pokemons/no-image.png" ?>" alt="<?= $pokemon->getNomEspece() ?>">
             <div class="infos">
                 <h2>#<?= $pokemon->getIdPokemon() ?> - <?= $pokemon->getNomEspece() ?></h2>
                 <div class="tags">

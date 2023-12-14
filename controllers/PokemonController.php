@@ -32,8 +32,11 @@ class PokemonController
     {
         if($message !== null) $message = new Message($message, "Erreur", "danger");
 
+        $manager = new PkmnTypeManager();
+        $types = $manager->getAll();
+
         $addPokemonView = new View('AddPokemon');
-        $addPokemonView->generer(["message" => $message]);
+        $addPokemonView->generer(["message" => $message, "types" => $types]);
     }
 
     /**
@@ -116,8 +119,11 @@ class PokemonController
         $pokemon = $manager->getById($idPokemon);
 
         if($pokemon !== null) {
+            $manager = new PkmnTypeManager();
+            $types = $manager->getAll();
+
             $editPokemonView = new View('AddPokemon');
-            $editPokemonView->generer(["pokemon" => $pokemon]);
+            $editPokemonView->generer(["pokemon" => $pokemon, "types" => $types]);
         }
         else
             $this->displayAddPokemon("Le pokémon {$idPokemon} n'existe pas");

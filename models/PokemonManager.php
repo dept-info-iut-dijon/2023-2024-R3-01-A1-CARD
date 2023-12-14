@@ -69,10 +69,10 @@ class PokemonManager extends Model
                 $sql = "SELECT * FROM pokemon WHERE nomEspece LIKE ?";
                 break;
             case 'typeOne':
-                $sql = "SELECT * FROM pokemon WHERE typeOne LIKE ?";
+                $sql = "SELECT * FROM pokemon JOIN pkmn_type ON pkmn_type.idType = pokemon.typeOne WHERE pkmn_type.nomType LIKE ?";
                 break;
             case 'typeTwo':
-                $sql = "SELECT * FROM pokemon WHERE typeTwo LIKE ?";
+                $sql = "SELECT * FROM pokemon JOIN pkmn_type ON pkmn_type.idType = pokemon.typeTwo WHERE pkmn_type.nomType LIKE ?";
                 break;
             case 'urlImg':
                 $sql = "SELECT * FROM pokemon WHERE urlImg LIKE ?";
@@ -104,7 +104,7 @@ class PokemonManager extends Model
     {
         $res = false;
 
-        if(($pokemon->getTypeTwo())->getIdType() === ($pokemon->getTypeOne())->getIdType()) $pokemon->setTypeTwo(null);
+        if(($pokemon->getTypeTwo())?->getIdType() === ($pokemon->getTypeOne())->getIdType()) $pokemon->setTypeTwo(null);
 
         $sql = "INSERT INTO pokemon (nomEspece, description, typeOne, typeTwo, urlImg) VALUES (?, ?, ?, ?, ?);";
         if($this->execRequest($sql, [
