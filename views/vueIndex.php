@@ -9,8 +9,8 @@
             <div class="infos">
                 <h2>#<?= $pokemon->getIdPokemon() ?> - <?= $pokemon->getNomEspece() ?></h2>
                 <div class="tags">
-                    <?= "<span class='tag tag-info'>{$pokemon->getTypeOne()}</span>" ?>
-                    <?php if($pokemon->getTypeTwo() != null) echo "<span class='tag tag-info'>{$pokemon->getTypeTwo()}</span>"; ?>
+                    <?= "<span class='tag tag-info'>".($pokemon->getTypeOne())->getNomType()."</span>" ?>
+                    <?php if($pokemon->getTypeTwo() != null) echo "<span class='tag tag-info'>".($pokemon->getTypeTwo())->getNomType()."</span>"; ?>
                 </div>
                 <p><?= $pokemon->getDescription() ?></p>
             </div>

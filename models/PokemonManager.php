@@ -104,14 +104,14 @@ class PokemonManager extends Model
     {
         $res = false;
 
-        if($pokemon->getTypeTwo() === $pokemon->getTypeOne()) $pokemon->setTypeTwo(null);
+        if(($pokemon->getTypeTwo())->getIdType() === ($pokemon->getTypeOne())->getIdType()) $pokemon->setTypeTwo(null);
 
         $sql = "INSERT INTO pokemon (nomEspece, description, typeOne, typeTwo, urlImg) VALUES (?, ?, ?, ?, ?);";
         if($this->execRequest($sql, [
             $pokemon->getNomEspece(),
             $pokemon->getDescription(),
-            $pokemon->getTypeOne(),
-            $pokemon->getTypeTwo(),
+            ($pokemon->getTypeOne())->getIdType(),
+            ($pokemon->getTypeTwo())?->getIdType(),
             $pokemon->getUrlImg()
         ])) {
             $idPokemon = $this->execRequest("SELECT LAST_INSERT_ID()")->fetch()[0];
